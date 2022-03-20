@@ -1,0 +1,45 @@
+[GLOBAL]
+dynamic_ui = false
+pants_version = "2.11.0rc0"
+backend_packages = [
+    "pants.backend.plugin_development",
+    "pants.backend.python.lint.black",
+    "pants.backend.python.lint.isort",
+    "pants.backend.python.typecheck.mypy",
+    "pants.backend.python",
+    "mypy_requirement",
+]
+build_patterns = ["BUILD.pants", "BUILD"]
+pythonpath = ["%(buildroot)s/tools/pants/pants-plugins"]
+
+[anonymous-telemetry]
+enabled = false
+
+[pytest]
+extra_requirements = [
+    "pytest-icdiff==0.5",
+    "pygments==2.11.2",
+    "pytest-forked==1.4.0",
+]
+args = ["-rs", "--forked"]
+
+[mypy]
+version = "mypy==0.910"
+extra_type_stubs = [
+    "types-chardet==4.0.1",
+    "types-dataclasses==0.6.1",
+    "types-emoji==1.2.6",
+    "types-futures==3.3.1",
+    "types-pyyaml==6.0.3",
+    "types-requests==2.25.11",
+    "types-setuptools==57.4.7",
+    "types-six==1.16.2",
+    "types-tabulate==0.8.3",
+    "typing-extensions==4.0.1",
+]
+
+[python]
+interpreter_constraints = ["CPython>=3.9"]
+
+[tailor]
+build_file_name = "BUILD"
